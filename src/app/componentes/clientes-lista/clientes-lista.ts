@@ -8,8 +8,8 @@ import { ClienteService } from '../../services/cliente';
   selector: 'app-cliente-lista',
   standalone: true,
   imports: [FormsModule, NgFor, NgIf],
-  templateUrl: './cliente-lista.html',
-  styleUrl: './cliente-lista.css'
+  templateUrl: './clientes-lista.html',
+  styleUrl: './clientes-lista.css'
 })
 export class ClienteListaComponent implements OnInit {
   @Output() selecionarParaEditar = new EventEmitter<Cliente>();
