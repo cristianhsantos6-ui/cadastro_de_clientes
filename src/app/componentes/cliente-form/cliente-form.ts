@@ -23,7 +23,31 @@ export class ClienteFormComponent implements OnChanges {
 
   ngOnChanges(): void {
     if (this.clienteParaEditar) {
-      
+      this.cliente = { ...this.clienteParaEditar };
+    } else {
+      this.cliente = this.novoCliente();
     }
+  }
+
+  novoCliente(): Cliente {
+    return { nome: '', email: '', cpf: '', dataNascimento: '', uf: '', municipio: ''};
+  }
+
+  salvar(): void {
+    if (!this.cliente.nome || !this.cliente.email || !this.cliente.cpf) {
+      alert('Preencha os campos obrigatórios!');
+      return;
+    }
+
+    if (this.cliente.id) {
+      this.clienteService.atualizar(this.cliente);
+      alert('Cliente atualizado com sucesso!');
+      this.cliente = this.novoCliente();
+    }
+  }
+
+  cancelar(): void {
+    this.cliente = this.novoCliente();
+    this.cancelouEdicao.emit();
   }
 }
