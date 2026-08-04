@@ -34,7 +34,7 @@ export class ClienteService {
    pesquisarPorNome(nome: string): Cliente[] {
     if (!nome.trim()) return this.clientes;
     return this.clientes.filter(c => 
-       c.nome.toLowerCaso().includes(nome.toLocaleLowerCase()) 
+       c.nome.toLowerCase().includes(nome.toLocaleLowerCase()) 
        );
    }
 }

@@ -1,4 +1,4 @@
-<p>clientes-lista works!</p>
+
 
 <div class="card">
     <h2>Consulta</h2>
@@ -26,14 +26,14 @@
         <td>{{item.nome}}</td>
         <td>{{item.cpf}}</td>
         <td>{{item.dataNascimento}}</td>
-        <td>{{item.emial}}</td>
+        <td>{{item.email}}</td>
        <td>
         <button (click)="editar(item)">Editar</button>
            <button (click)="deletar(item.id)" class="btn-deletar">Deletar</button>
        </td>
     </tr>
 
-    <tr *nglf="listaClientes.length === 0">
+    <tr *ngIf="listaClientes.length === 0">
     <td colspan="6">Nenhum cliente encontrado.</td>
    </tr>
       </tbody>
