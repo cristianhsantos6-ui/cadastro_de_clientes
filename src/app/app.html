@@ -1,0 +1,16 @@
+
+<header class="header">
+  <h1>Cadastro de Clientes</h1>
+</header>
+
+<main class="main-container">
+  <app-cliente-form 
+    [clienteParaEditar]="clienteSelecionado" 
+    (cancelouEdicao)="limparSelecao()">
+  </app-cliente-form>
+
+  <app-cliente-lista 
+    (selecionarParaEditar)="prepararEdicao($event)">
+  </app-cliente-lista>
+</main>
+

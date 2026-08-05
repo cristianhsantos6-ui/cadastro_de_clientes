@@ -1,0 +1,53 @@
+import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { NgIf, NgFor } from '@angular/common'
+import { Cliente } from '../../models/cliente.model'
+import { ClienteService } from '../../services/cliente';
+
+@Component({
+  selector: 'app-cliente-form',
+  standalone: true,
+  imports: [ FormsModule, NgIf, NgFor],
+  templateUrl: './cliente-form.html',
+  styleUrl: './cliente-form.css'
+})
+export class ClienteFormComponent implements OnChanges {
+  @Input() clienteParaEditar: Cliente | null = null;
+  @Output() cancelouEdicao = new EventEmitter<void>();
+
+  cliente: Cliente = this.novoCliente();
+
+  estados: string[] = ["SE,AL,BA,PE,SP,RJ,PA"];
+
+  constructor(private clienteService: ClienteService) {}
+
+  ngOnChanges(): void {
+    if (this.clienteParaEditar) {
+      this.cliente = { ...this.clienteParaEditar };
+    } else {
+      this.cliente = this.novoCliente();
+    }
+  }
+
+  novoCliente(): Cliente {
+    return { nome: '', email: '', cpf: '', dataNascimento: '', uf: '', municipio: ''};
+  }
+
+  salvar(): void {
+    if (!this.cliente.nome || !this.cliente.email || !this.cliente.cpf) {
+      alert('Preencha os campos obrigatórios!');
+      return;
+    }
+
+    if (this.cliente.id) {
+      this.clienteService.atualizar(this.cliente);
+      alert('Cliente atualizado com sucesso!');
+      this.cliente = this.novoCliente();
+    }
+  }
+
+  cancelar(): void {
+    this.cliente = this.novoCliente();
+    this.cancelouEdicao.emit();
+  }
+}

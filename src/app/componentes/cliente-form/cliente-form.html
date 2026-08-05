@@ -1,0 +1,32 @@
+
+
+
+<div class="card">
+    <h2>Dados Pessoais</h2>
+
+    <form (ngSubmit)="salvar()">
+        <label>Nome *</label><br>
+        <input type="text" [(ngModel)]="cliente.nome" name="nome" required><br><br>
+
+        <label>E-mail *</label><br>
+        <input type="email" [(ngModel)]="cliente.email" name="email" required><br><br>
+    
+        <label>Cpf *</label><br>
+        <input type="cpf" [(ngModel)]="cliente.cpf" name="cpf" placeholder="000.000.000.00" required><br><br>
+    
+        <label>Data Nascimento *</label><br>
+        <input type="data" [(ngModel)]="cliente.dataNascimento" name="dataNascimento" required><br><br>
+    
+        <label>UF *</label><br>
+        <select [(ngModel)]="cliente.uf" name="uf" required>
+        <option value="">Selecione...</option>
+        <option *ngFor="let uf of estados" [value]="uf">{{ uf}}</option>
+    </select><br><br>
+
+       <label>Município *</label><br>
+       <input type="text" [(ngModel)]="cliente.municipio" name="municipio" required><br><br>
+
+       <button type="submit">{{ cliente.id ? 'Atualizar' : 'Cadastrar'}}</button>
+       <button type="button" *ngIf="cliente.id" (click)="cancelar()" class="btn-cancelar">Limpar</button>
+    </form>
+</div>
