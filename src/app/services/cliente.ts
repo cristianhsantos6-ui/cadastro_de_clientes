@@ -7,23 +7,20 @@ import { Cliente } from '../models/cliente.model';
 export class ClienteService {
     private clientes: Cliente[] = [];
 
-    getClientes() : Cliente[] {
-        return this.clientes;
+    constructor() {}
+    obterTodos(): Cliente[] {
+        return this.clientes
     }
 
-   getClienteById(id:|string) : Cliente | undefined {
-    return this.clientes.find(c => c.id === id);
-   }
-
    adicionar(cliente: Cliente): void {
-    cliente.id = Math.random().toString(36).substring(2, 9);
-   this.clientes.push(cliente);
+    cliente.id = new Date().getTime().toString();
+     this.clientes.push(cliente);
    }
 
    atualizar(clienteAtualizado: Cliente): void {
     const index = this.clientes.findIndex(c => c.id === clienteAtualizado.id);
     if (index !== -1) {
-        this.clientes[index] = clienteAtualizado;
+        this.clientes[index] = {...clienteAtualizado};
     }
    }
 
@@ -31,8 +28,8 @@ export class ClienteService {
     this.clientes = this.clientes.filter(c => c.id !== id);
    }
 
-   pesquisarPorNome(nome: string): Cliente[] {
-    if (!nome.trim()) return this.clientes;
+   buscasarPorNome(nome: string): Cliente[] {
+    if (!nome.trim()) return this.obterTodos();
     return this.clientes.filter(c => 
        c.nome.toLowerCase().includes(nome.toLocaleLowerCase()) 
        );

@@ -5,28 +5,50 @@
     <h2>Dados Pessoais</h2>
 
     <form (ngSubmit)="salvar()">
+        <div class="form-grid">
+            <div class="form-group">
         <label>Nome *</label><br>
         <input type="text" [(ngModel)]="cliente.nome" name="nome" required><br><br>
-
+            </div>
+            <div class="form-group">
         <label>E-mail *</label><br>
         <input type="email" [(ngModel)]="cliente.email" name="email" required><br><br>
-    
+            </div>
+
+            <div class="form-group">
         <label>Cpf *</label><br>
         <input type="cpf" [(ngModel)]="cliente.cpf" name="cpf" placeholder="000.000.000.00" required><br><br>
-    
+            </div>
+
+            <div class="form-group">
         <label>Data Nascimento *</label><br>
         <input type="data" [(ngModel)]="cliente.dataNascimento" name="dataNascimento" required><br><br>
-    
+            </div>
+
+            <div class="form-group">
         <label>UF *</label><br>
         <select [(ngModel)]="cliente.uf" name="uf" required>
         <option value="">Selecione...</option>
-        <option *ngFor="let uf of estados" [value]="uf">{{ uf}}</option>
+        <option value="SE">SE</option>
+        <option value="AL">AL</option>
+        <option value="BA">BA</option>
+        <option value="PE">PE</option>
+        <option value="SP">SP</option>
+        <option value="RJ">RJ</option>
+        <option value="PA">PA</option>
     </select><br><br>
+            </div>
 
+
+            <div class="form-group">
        <label>Município *</label><br>
        <input type="text" [(ngModel)]="cliente.municipio" name="municipio" required><br><br>
+            </div>
 
-       <button type="submit">{{ cliente.id ? 'Atualizar' : 'Cadastrar'}}</button>
-       <button type="button" *ngIf="cliente.id" (click)="cancelar()" class="btn-cancelar">Limpar</button>
+            <div class="form-actions">
+       <button type="submit" class="btn btn-primary"> {{ cliente.id? 'Atualizar': 'Cadastrar'}}</button>
+
+       <button type="button" (click)="cancelar()" class="btn-secondary">Limpar</button>
+            </div>
     </form>
 </div>

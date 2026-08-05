@@ -2,40 +2,46 @@
 
 <div class="card">
     <h2>Consulta</h2>
-    <div class="busca-box">
-        <input type="text" [(ngModel)]="termoBusca" placeholder="Nome">
-        <button (click)="atualizarLista()">Pesquisar</button>
+    <div class="search-section">
+        <input type="text" class="search-input" placeholder="Buscar por nome..." [(ngModel)]="termobuscar" (input)="atualizarLista()">
     </div>
 
     <h2>Resultado</h2>
     <table>
         <thead>
             <tr>
-                <th>Id</th>
+          
                 <th>Nome</th>
                 <th>CPF</th>
                 <th>Data Nascimento</th>
-                <th>Email</th>
+                <th>E-mail</th>
+                <th>UF</th>
+                <th>Municipio</th>
                 <th>Ações</th>
             </tr>
         </thead>
 
       <tbody>
+
+        @for (item of listaClientes; track item.id){
         <tr *ngFor="let item of listaClientes">
-        <td>{{item.id}}</td>
         <td>{{item.nome}}</td>
         <td>{{item.cpf}}</td>
         <td>{{item.dataNascimento}}</td>
         <td>{{item.email}}</td>
+        <td>{{item.uf}}</td>
+        <td>{{item.municipio}}</td>
        <td>
-        <button (click)="editar(item)">Editar</button>
-           <button (click)="deletar(item.id)" class="btn-deletar">Deletar</button>
+        <button class="btn-action btn-edit" (click)="editar(item)">Editar</button>
+           <button class="btn-action btn-delete" (click)="excluir(item.id)">Deletar</button>
        </td>
     </tr>
-
+        }
+      </tbody>
+    </table>
+    <div>
     <tr *ngIf="listaClientes.length === 0">
     <td colspan="6">Nenhum cliente encontrado.</td>
    </tr>
-      </tbody>
-    </table>
+    </div>
 </div>

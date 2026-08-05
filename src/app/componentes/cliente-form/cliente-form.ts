@@ -1,13 +1,13 @@
 import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { NgIf, NgFor } from '@angular/common'
+import { NgIf,  } from '@angular/common'
 import { Cliente } from '../../models/cliente.model'
 import { ClienteService } from '../../services/cliente';
 
 @Component({
   selector: 'app-cliente-form',
   standalone: true,
-  imports: [ FormsModule, NgIf, NgFor],
+  imports: [ FormsModule, NgIf ],
   templateUrl: './cliente-form.html',
   styleUrl: './cliente-form.css'
 })
@@ -42,6 +42,10 @@ export class ClienteFormComponent implements OnChanges {
     if (this.cliente.id) {
       this.clienteService.atualizar(this.cliente);
       alert('Cliente atualizado com sucesso!');
+      this.cancelar();
+    }else {
+      this.clienteService.adicionar(this.cliente);
+      alert('Cliente cadastrado com sucesso!');
       this.cliente = this.novoCliente();
     }
   }
