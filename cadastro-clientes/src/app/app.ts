@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ClienteFormComponent } from './componentes/cliente-form/cliente-form';
 import { ClienteListaComponent } from './componentes/clientes-lista/clientes-lista';
 import { Cliente } from './models/cliente.model';
@@ -11,7 +11,9 @@ import { Cliente } from './models/cliente.model';
   styleUrl: './app.css'
 })
 export class AppComponent {
-  clienteSelecionado: Cliente | null = null;
+  @ViewChild(ClienteListaComponent) clienteListaComponent! : ClienteListaComponent;
+
+clienteSelecionado: Cliente | null = null;
 
   prepararEdicao(cliente: Cliente): void {
     this.clienteSelecionado = cliente;
@@ -19,6 +21,9 @@ export class AppComponent {
 
   limparSelecao(): void {
     this.clienteSelecionado = null;
+    if (this.clienteListaComponent) {
+      this.clienteListaComponent.atualizarLista();
+    }
   }
 }
 

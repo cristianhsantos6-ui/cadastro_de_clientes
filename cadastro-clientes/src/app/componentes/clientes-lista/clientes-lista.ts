@@ -24,6 +24,7 @@ export class ClienteListaComponent implements OnInit {
   }
 
   atualizarLista(): void {
+    this.listaClientes = [];
     this.listaClientes = this.clienteService.buscarPorNome(this.termoBusca);
   }
 
