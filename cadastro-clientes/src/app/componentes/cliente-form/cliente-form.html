@@ -1,7 +1,7 @@
 <div class="card">
   <h2>Dados Pessoais</h2>
   
-  <form (ngSubmit)="salvar()">
+   <form (ngSubmit)="salvar()">
     <div class="form-grid">
       <div class="form-group">
         <label>Nome *</label>
@@ -35,7 +35,6 @@
         <label>Município *</label>
         <input type="text" [(ngModel)]="cliente.municipio" name="municipio" required>
       </div>
-    </div>
 
     <div class="form-actions">
       <button type="submit" class="btn btn-primary">
@@ -45,6 +44,7 @@
         Limpar
       </button>
     </div>
-  </form>
+ 
 </div>
+</form>
 

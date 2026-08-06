@@ -9,7 +9,7 @@ import { ClienteService } from '../../services/cliente';
   standalone: true,
   imports: [FormsModule, NgFor],
   templateUrl: './cliente-form.html',
-  styleUrl: './cliente-form.css'
+  styleUrl: './cliente-form.css',
 })
 export class ClienteFormComponent implements OnChanges {
   @Input() clienteParaEditar: Cliente | null = null;
