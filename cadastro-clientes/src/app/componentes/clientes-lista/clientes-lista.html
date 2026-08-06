@@ -1,47 +1,50 @@
-
-
 <div class="card">
-    <h2>Consulta</h2>
-    <div class="search-section">
-        <input type="text" class="search-input" placeholder="Buscar por nome..." [(ngModel)]="termoBusca" (input)="atualizarLista()">
-    </div>
+  <h2>Consulta</h2>
+  
+  <div class="search-section">
+    <input 
+      type="text" 
+      class="search-input" 
+      placeholder="Buscar por nome..." 
+      [(ngModel)]="termoBusca"
+      (input)="atualizarLista()"
+    >
+  </div>
 
-    <h2>Resultado</h2>
-    <table>
-        <thead>
-            <tr>
-          
-                <th>Nome</th>
-                <th>CPF</th>
-                <th>Data Nascimento</th>
-                <th>E-mail</th>
-                <th>UF</th>
-                <th>Municipio</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
+  <h3>Resultado</h3>
 
+  <div class="table-container">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>CPF</th>
+          <th>Data Nascimento</th>
+          <th>E-mail</th>
+          <th>UF</th>
+          <th>Município</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
       <tbody>
-
-        @for (item of listaClientes; track item.id){
         <tr *ngFor="let item of listaClientes">
-        <td>{{item.nome}}</td>
-        <td>{{item.cpf}}</td>
-        <td>{{item.dataNascimento}}</td>
-        <td>{{item.email}}</td>
-        <td>{{item.uf}}</td>
-        <td>{{item.municipio}}</td>
-       <td>
-        <button class="btn-action btn-edit" (click)="editar(item)">Editar</button>
-           <button class="btn-action btn-delete" (click)="excluir(item.id)">Deletar</button>
-       </td>
-    </tr>
-        }
+          <td>{{ item.nome }}</td>
+          <td>{{ item.cpf }}</td>
+          <td>{{ item.dataNascimento }}</td>
+          <td>{{ item.email }}</td>
+          <td>{{ item.uf }}</td>
+          <td>{{ item.municipio }}</td>
+          <td>
+            <button class="btn-action btn-edit" (click)="editar(item)">Editar</button>
+            <button class="btn-action btn-delete" (click)="excluir(item.id)">Deletar</button>
+          </td>
+        </tr>
       </tbody>
     </table>
-    <div>
-    <tr *ngIf="listaClientes.length === 0">
-    <td colspan="6">Nenhum cliente encontrado.</td>
-   </tr>
+
+    <div *ngIf="listaClientes.length === 0" class="no-data">
+      Nenhum cliente encontrado.
     </div>
+  </div>
 </div>
+

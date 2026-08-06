@@ -7,15 +7,11 @@ import { Cliente } from '../models/cliente.model';
 export class ClienteService {
   private clientes: Cliente[] = [];
 
-  constructor() {}
-
   obterTodos(): Cliente[] {
-    // Retorna uma cópia do array para evitar mutação direta
     return [...this.clientes];
   }
 
   adicionar(cliente: Cliente): void {
-    // Garante um ID único combinando data e número aleatório
     const novoCliente = {
       ...cliente,
       id: Date.now().toString() + Math.floor(Math.random() * 1000).toString()
@@ -39,9 +35,7 @@ export class ClienteService {
     if (!termo) {
       return this.obterTodos();
     }
-    return this.clientes.filter(c => 
-      c.nome.toLowerCase().includes(termo)
-    );
+    return this.clientes.filter(c => c.nome.toLowerCase().includes(termo));
   }
 }
 

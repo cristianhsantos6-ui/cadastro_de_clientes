@@ -23,7 +23,6 @@ export class AppComponent {
     this.clienteSelecionado = null;
   }
 
-  // ADICIONE ESTA FUNÇÃO:
   atualizarListaAposSalvar(): void {
     this.limparSelecao();
     if (this.clienteListaComponent) {
