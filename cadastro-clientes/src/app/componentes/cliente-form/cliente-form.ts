@@ -14,9 +14,9 @@ import { ClienteService } from '../../services/cliente';
 export class ClienteFormComponent implements OnChanges {
   @Input() clienteParaEditar: Cliente | null = null;
   @Output() cancelouEdicao = new EventEmitter<void>();
+  @Output() clienteSalvo = new EventEmitter<void>();
 
   cliente: Cliente = this.novoCliente();
-
   estados: string[] = ['SE', 'AL', 'BA', 'PE', 'SP', 'RJ', 'PA'];
 
   constructor(private clienteService: ClienteService) {}
@@ -42,12 +42,13 @@ export class ClienteFormComponent implements OnChanges {
     if (this.cliente.id) {
       this.clienteService.atualizar(this.cliente);
       alert('Cliente atualizado com sucesso!');
-      this.cancelar();
     } else {
       this.clienteService.adicionar(this.cliente);
       alert('Cliente cadastrado com sucesso!');
-      this.cliente = this.novoCliente();
     }
+
+    this.clienteSalvo.emit();
+    this.cancelar();
   }
 
   cancelar(): void {

@@ -11,9 +11,9 @@ import { Cliente } from './models/cliente.model';
   styleUrl: './app.css'
 })
 export class AppComponent {
-  @ViewChild(ClienteListaComponent) clienteListaComponent! : ClienteListaComponent;
+  @ViewChild(ClienteListaComponent) clienteListaComponent!: ClienteListaComponent;
 
-clienteSelecionado: Cliente | null = null;
+  clienteSelecionado: Cliente | null = null;
 
   prepararEdicao(cliente: Cliente): void {
     this.clienteSelecionado = cliente;
@@ -21,6 +21,11 @@ clienteSelecionado: Cliente | null = null;
 
   limparSelecao(): void {
     this.clienteSelecionado = null;
+  }
+
+  // ADICIONE ESTA FUNÇÃO:
+  atualizarListaAposSalvar(): void {
+    this.limparSelecao();
     if (this.clienteListaComponent) {
       this.clienteListaComponent.atualizarLista();
     }
