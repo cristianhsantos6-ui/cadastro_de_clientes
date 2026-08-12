@@ -1,0 +1,36 @@
+<form #formPessoa="ngForm" (ngSubmit)="salvar()">
+  
+    <label for="nome">Nome*</label>
+    <input type="text" name="nome" id="nome" [(ngModel)]="nome" class="elem-form-02" required>
+  
+    <label for="email">E-mail*</label>
+    <input type="email" name="email" id="email" [(ngModel)]="email" class="elem-form-02" required>
+  
+    <label for="cpf">CPF*</label>
+    <input type="text" name="cpf" id="cpf" [(ngModel)]="cpf" class="elem-form-02" required>
+  
+    <label for="dataNascimento">Data de Nascimento*</label>
+    <input type="date" name="dataNascimento" id="dataNascimento" [(ngModel)]="dataNascimento" class="elem-form-02" required>
+  
+    <label for="uf">UF*</label>
+    <select name="uf" id="uf" [(ngModel)]="uf" (change)="carregaMunicipiosSelect()" class="elem-form-02">
+      <option value="">Selecione uma UF</option>
+      @for (elem of listaUfs; track elem.id) {
+        <option [value]="elem.id">{{ elem.sigla }} - {{ elem.nome }}</option>
+      }
+    </select>
+  
+    <label for="municipio">Município*</label>
+    <select name="municipio" id="municipio" [(ngModel)]="municipio" [disabled]="listaMunicipios.length === 0" class="elem-form-02">
+      <option value="">Selecione um município</option>
+      @for (elem of listaMunicipios; track elem.id) {
+        <option [value]="elem.nome">{{ elem.nome }}</option>
+      }
+    </select>
+  
+    <div id="div-btns">
+      <button type="submit">Cadastrar</button>
+    </div>
+  </form>
+  
+  

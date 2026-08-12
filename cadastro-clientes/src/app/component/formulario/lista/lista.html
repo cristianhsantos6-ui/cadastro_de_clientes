@@ -1,0 +1,13 @@
+<div class="lista-container">
+    <h2>LISTA DE PESSOAS</h2>
+  
+    <div *ngFor="let p of pessoas" class="pessoa-card">
+      <p><strong>{{ p.id }} - {{ p.nome }} - {{ p.cpf }} - {{ p.dataNascimento }}</strong></p>
+      <p>{{ p.email }}</p>
+      <button (click)="excluir(p.id)" class="btn-excluir">Excluir</button>
+    </div>
+  
+    <p *ngIf="pessoas.length === 0">Nenhuma pessoa cadastrada.</p>
+  </div>
+  
+  
