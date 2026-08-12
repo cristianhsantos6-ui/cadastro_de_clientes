@@ -1,33 +1,14 @@
-import { Component, ViewChild } from '@angular/core';
-import { ClienteFormComponent } from './componentes/cliente-form/cliente-form';
-import { ClienteListaComponent } from './componentes/clientes-lista/clientes-lista';
-import { Cliente } from './models/pessoa';
+import { Component } from '@angular/core';
+import { RouterOutlet, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ClienteFormComponent, ClienteListaComponent],
+  imports: [RouterOutlet, RouterLink],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class AppComponent {
-  @ViewChild(ClienteListaComponent) clienteListaComponent!: ClienteListaComponent;
-
-  clienteSelecionado: Cliente | null = null;
-
-  prepararEdicao(cliente: Cliente): void {
-    this.clienteSelecionado = cliente;
-  }
-
-  limparSelecao(): void {
-    this.clienteSelecionado = null;
-  }
-
-  atualizarListaAposSalvar(): void {
-    this.limparSelecao();
-    if (this.clienteListaComponent) {
-      this.clienteListaComponent.atualizarLista();
-    }
-  }
+  title = 'cadastro-clientes';
 }
 

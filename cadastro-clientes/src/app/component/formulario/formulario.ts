@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Pessoa } from '../../models/pessoa';
-import { PessoaService } from '../../services/pessoa/pessoa-service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UfMunicipioService } from '../../services/uf-municipios/uf-municipio.service';
+
+// Imports dos seus arquivos (caminhos ajustados para a estrutura atual)
+import { Pessoa } from '../../models/pessoa';
 import { Estado } from '../../models/estado';
 import { Municipio } from '../../models/municipio';
+import { PessoaService } from '../../services/pessoa/pessoa-service';
+import { UfMunicipioService } from '../../services/uf-municipios/uf-municipio.service';
 
 @Component({
   selector: 'app-formulario',
@@ -44,10 +46,10 @@ export class Formulario implements OnInit {
   carregaEstadosSelect() {
     this.ufMunicipioService.listaUF()
       .subscribe({
-        next: (dadosUf) => {
+        next: (dadosUf: Estado[]) => {
           this.listaUfs = [...dadosUf].sort((a, b) => a.nome.localeCompare(b.nome));
         },
-        error: (msgErro) => {
+        error: (msgErro: any) => {
           console.log('Erro ao carregar os Estados', msgErro);
         }
       });
@@ -62,10 +64,10 @@ export class Formulario implements OnInit {
 
     this.ufMunicipioService.listaMunicipios(Number(this.uf))
       .subscribe({
-        next: (dadosMunicipio) => {
+        next: (dadosMunicipio: Municipio[]) => {
           this.listaMunicipios = dadosMunicipio;
         },
-        error: (msgErro) => {
+        error: (msgErro: any) => {
           console.log('Erro ao carregar os municípios: ', msgErro);
         }
       });
